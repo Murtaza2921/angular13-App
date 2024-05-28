@@ -1,0 +1,80 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$customTheme-App-primary: mat.define-palette(mat.$indigo-palette);
+$customTheme-App-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$customTheme-App-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$customTheme-App-theme: mat.define-light-theme((
+  color: (
+    primary: $customTheme-App-primary,
+    accent: $customTheme-App-accent,
+    warn: $customTheme-App-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($customTheme-App-theme);
+
+/* Dark Theme */
+.dark-theme {
+  --primary-color: #ffffff;
+  --secondary-color: #333333;
+  --background-color: #575050;
+  --text-color: #ffffff;
+  --primary-color-hover: darken(#ffffff, 10%);
+  --background-image: url('../assets/bg2.jpg'); /* Dark background image */
+  --loginForm-bg : rgba(121, 114, 114, 0.7);
+}
+
+/* Light Theme */
+.light-theme {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --background-color: #f8f9fa;
+  --text-color: #212529;
+  --primary-color-hover: darken(#007bff, 10%);
+  --background-image: url('../assets/bg.jpg'); /* Light background image */
+  --loginForm-bg : rgba(223, 69, 69, 0.7);
+}
+
+/* Add background image to body with transparent gradient overlay */
+body {
+  background-image: 
+  linear-gradient(to bottom, rgba(1, 25, 48, 0.5), rgba(68, 3, 56, 0.5)),
+    var(--background-image); /* Your background image */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+/* Dark mode overlay */
+body.dark-theme {
+  background-image: 
+    linear-gradient(
+      rgb(0, 0, 0),  /* Start with 50% transparent black for dark mode */
+      rgba(0, 0, 0, 0.5)   /* End with 50% transparent black for dark mode */
+    ),
+    var(--background-image); /* Your background image */
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

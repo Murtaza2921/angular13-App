@@ -1,0 +1,35 @@
+// Import shared variables
+@import 'variables';
+
+// Global styles using shared variables
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  margin: 0;
+  padding: 0;
+}
+
+// Example of button styles using shared variables
+button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+
+  &:hover {
+      background-color: darken(var(--primary-color), 10%);
+  }
+}
+
+/* Apply light or dark theme based on class */
+body.light-theme {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+body.dark-theme {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
